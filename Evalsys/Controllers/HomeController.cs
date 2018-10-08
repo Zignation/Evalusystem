@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DAL;
 
 namespace Evalsys.Controllers
 {
@@ -27,9 +28,11 @@ namespace Evalsys.Controllers
             return View();
         }
 
-        public JsonResult GetName()
+        public JsonResult GetCourses()
         {
-            return Json(new { name = "World from server side" }, JsonRequestBehavior.AllowGet);
+            var dal = new DataService();
+            var evals = dal.GetCourses();
+            return Json(new { courses = evals }, JsonRequestBehavior.AllowGet);
         }
     }
 }

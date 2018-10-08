@@ -1,8 +1,9 @@
 ﻿var HelloWorld = React.createClass({
 
     getInitialState: function () {
-        return { name: '' };
+        return { courses: [] };
     },
+
     componentDidMount: function () {
         $.ajax({
             url: this.props.url,
@@ -15,14 +16,19 @@
             }.bind(this)
         });
     },
+
     render: function () {
         return (
-            <div> Hello {this.state.name} </div>
+            <div> Courses: <ul> {this.state.courses && this.state.courses.map((course, index) => this.renderCourses(course, index))} </ul></div>
         );
+    },
+
+    renderCourses: function (course, index) {
+        return (<li key={index}>{course.course_name}</li>)
     }
 });
 
 React.render(
-    <HelloWorld url="/home/getname" />,
+    <HelloWorld url="/home/getcourses" />,
     document.getElementById('container')
 );
