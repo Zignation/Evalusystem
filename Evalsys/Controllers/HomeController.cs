@@ -26,5 +26,10 @@ namespace Evalsys.Controllers
 
             return View();
         }
+
+        public JsonResult GetName()
+        {
+            return Json(new { name = "World from server side" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
